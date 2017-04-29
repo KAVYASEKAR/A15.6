@@ -1,0 +1,12 @@
+4) How can you control parallelism in running sqoop jobs. Control the number of mappers to run parallely to 5 while transfering data from Mysql to HDFS using sqoop.
+Answer:
+
+The parameter --num-mappers can be used if Sqoop should use a different number of mappers. For example, to suggest 5 concurrent tasks, use the following Sqoop command:
+
+sqoop import   --connect
+jdbc:mysql://localhost/sqoop   --username
+sqoop   --password
+sqoop   --table
+cities   --num-mappers 5
+
+Controlling the amount of parallelism that Sqoop will use to transfer data is the main way to control the load on your database. Using more mappers will lead to a higher number of concurrent data transfer tasks, which can result in faster job completion. However, it will also increase the load on the database as Sqoop will execute more concurrent queries.
